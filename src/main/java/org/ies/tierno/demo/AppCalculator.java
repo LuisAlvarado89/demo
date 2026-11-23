@@ -1,6 +1,7 @@
 package org.ies.tierno.demo;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -34,6 +35,9 @@ public class AppCalculator extends Application {
         grid.setHgap(10);
         grid.setVgap(10);
 
+        // Margen de la pantalla
+        GridPane.setMargin(screen, new Insets(5, 40, 5, 30));
+
         // Colocar la pantalla ocupando las cuatro columnas
         grid.add(screen, 0, 0, 4, 1);
 
@@ -45,10 +49,11 @@ public class AppCalculator extends Application {
             btn[i] = new Button(numbers[i]);
             btn[i].setPrefSize(100, 40);
 
+            // Margen de cada botón
+            GridPane.setMargin(btn[i], new Insets(0, 5, 0, 5));
+
             // Colocar los botones en la cuadrícula
             grid.add(btn[i], i % 4, (i / 4) + 1);
-
-
         }
 
         // Añadir la cuadrícula a la ventana
