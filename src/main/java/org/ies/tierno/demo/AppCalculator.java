@@ -2,11 +2,12 @@ package org.ies.tierno.demo;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
 public class AppCalculator extends Application {
@@ -18,9 +19,17 @@ public class AppCalculator extends Application {
     public void start(Stage primaryStage) {
 
         // Pantalla de la calculadora
-        TextField screen = new TextField();
-        screen.setEditable(false);
-        screen.setText("0");
+        TextField screen = new TextField("2");
+        screen.setAlignment(Pos.CENTER_RIGHT);
+        screen.setMaxWidth(Double.MAX_VALUE);
+
+
+        // Crear la cuadrícula
+        GridPane root = new GridPane();
+        root.setHgap(10);
+        root.setVgap(10);
+        root.setAlignment(Pos.CENTER);
+
 
         // Números y operaciones
         String[] numbers = {
@@ -30,37 +39,34 @@ public class AppCalculator extends Application {
                 "C", "0", "=", "/"
         };
 
-        // Crear la cuadrícula
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-
-        // Margen de la pantalla
-        GridPane.setMargin(screen, new Insets(5, 40, 5, 30));
-
         // Colocar la pantalla ocupando las cuatro columnas
-        grid.add(screen, 0, 0, 4, 1);
+        root.add(screen, 0, 0, 4, 1);
+
 
         // Crear los botones
         Button[] btn = new Button[16];
+        int colum = 0;
+        int fila = 1;
 
         for (int i = 0; i < numbers.length; i++) {
 
             btn[i] = new Button(numbers[i]);
-            btn[i].setPrefSize(100, 40);
+            btn[i].prefWidth(60);
+            btn[i].setMaxWidth(Double.MAX_VALUE);
 
-            // Margen de cada botón
-            GridPane.setMargin(btn[i], new Insets(0, 5, 0, 5));
 
             // Colocar los botones en la cuadrícula
-            grid.add(btn[i], i % 4, (i / 4) + 1);
+            root.add(btn[i], colum, fila);
+            colum++;
+
+            if (colum == 4) {
+                colum = 0;
+                fila++;
+            }
+
         }
 
-        // Añadir la cuadrícula a la ventana
-        VBox root = new VBox(20);
-        root.getChildren().add(grid);
-
-        Scene scene = new Scene(root, 450, 300);
+        Scene scene = new Scene(root, 300, 250);
 
         primaryStage.setTitle("Calculadora JavaFX");
         primaryStage.setScene(scene);
@@ -68,6 +74,6 @@ public class AppCalculator extends Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
