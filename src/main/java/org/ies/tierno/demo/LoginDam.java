@@ -24,7 +24,7 @@ public class LoginDam extends Application {
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException{
 
         Label login = new Label("LOGIN DAM");
         login.setFont(new Font("Arial", 20));

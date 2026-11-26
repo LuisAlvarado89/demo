@@ -9,13 +9,15 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class AppTilePane extends Application {
 
     private static Scene scene;
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         TilePane root = new TilePane();
 
 
@@ -25,14 +27,13 @@ public class AppTilePane extends Application {
             btn[i] = new Button("Botón nº" + (i + 1));
             root.getChildren().add(btn[i]);
         }
-        root.getChildren().add(new Button("Este boton es dhercan391@gmail.comextremadamente largo"));
+        root.getChildren().add(new Button("Este botón es dhercan391@gmail.comextremadamente largo"));
 
 
         root.setHgap(10);
         root.setVgap(10);
         root.setAlignment(Pos.CENTER);
 
-        root.setOrientation(Orientation.VERTICAL);
 
 
         scene = new Scene(root, 500, 300);

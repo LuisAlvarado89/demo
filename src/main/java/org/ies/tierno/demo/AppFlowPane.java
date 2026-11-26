@@ -8,13 +8,15 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class AppFlowPane extends Application {
 
     private static Scene scene;
 
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
         FlowPane root = new FlowPane();
 
 
@@ -24,13 +26,13 @@ public class AppFlowPane extends Application {
             btn[i] = new Button("Botón nº" + (i + 1));
             root.getChildren().add(btn[i]);
         }
-        root.getChildren().add(new Button("Este boton es extremadamente largo"));
+        root.getChildren().add(new Button("Este botón es extremadamente largo"));
 
 
         root.setHgap(10);
         root.setVgap(10);
         root.setAlignment(Pos.CENTER);
-        root.setOrientation(Orientation.VERTICAL);
+
 
         scene = new Scene(root, 500, 300);
 
